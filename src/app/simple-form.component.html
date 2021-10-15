@@ -1,0 +1,69 @@
+<h1>Aareon Angular Test</h1>
+<form [formGroup]="profile" (ngSubmit)="submit()">
+  <div>
+    <div class="row">
+      <label>Title</label>
+      <select class="inputs" formControlName="title">
+        <option value="">-- Select an option --</option>
+        <option
+          *ngFor="let title of titles"
+          [value]="title.name"
+          [selected]="title.isDefault"
+        >
+          {{ title.name }}
+        </option>
+      </select>
+    </div>
+    <div class="row">
+      <label>First name</label>
+      <input
+        class="inputs"
+        type="text"
+        placeholder="First name"
+        formControlName="firstName"
+      />
+    </div>
+    <div class="row">
+      <label>Last name</label>
+      <input
+        class="inputs"
+        type="text"
+        placeholder="Last name"
+        formControlName="lastName"
+        [ngStyle]="{
+          'border-color':
+            (getControl.lastName.dirty ||
+              getControl.lastName.touched ||
+              error) &&
+            getControl.lastName.errors
+              ? 'red'
+              : ''
+        }"
+      />
+      <div
+        *ngIf="
+          (getControl.lastName.dirty || getControl.lastName.touched || error) &&
+          getControl.lastName.errors
+        "
+      >
+        <span class="error" *ngIf="getControl.lastName.errors.required"
+          >* Last name is mandatory</span
+        >
+      </div>
+    </div>
+    <div class="checker">
+      <input
+        type="checkbox"
+        style="width: 15px"
+        #confirmed
+        formControlName="acceptTerms"
+      />
+      <span>I accept the terms & conditions</span>
+    </div>
+    <div class="row">
+      <button class="btn" [disabled]="!confirmed.checked" type="submit">
+        Submit
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,38 @@
+.error {
+  color: red;
+  padding-left: 8px;
+  font-size: smaller;
+}
+
+/* Create two equal columns that floats next to each other */
+label {
+  float: left;
+  width: 20%;
+  padding: 10px;
+}
+
+input {
+  margin: 10px;
+  width: 60%;
+}
+
+select {
+  margin: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.btn {
+  float: right;
+}
+
+@media screen and (min-width: 960px) {
+  .btn {
+    margin-right: 115px
+  }
+}
